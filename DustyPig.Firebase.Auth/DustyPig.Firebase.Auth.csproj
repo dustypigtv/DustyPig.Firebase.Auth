@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>8</LangVersion>
+    <Authors>DustyPig.tv</Authors>
+    <Company>DustyPig.tv</Company>
+    <Description>Firebase.Auth REST API</Description>
+    <Copyright>DustyPig.tv</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/dustypigtv/DustyPig.Firebase.Auth</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dustypigtv/DustyPig.Firebase.Auth.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>$(NoWarn);1591,1573</NoWarn>
+
+	  <!-- Leave the revision as zero, it will be set by github actions -->
+	  <Version>3.0.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DustyPig.REST" Version="3.0.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+ 
+</Project>
