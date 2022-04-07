@@ -44,20 +44,20 @@ namespace DustyPig.Firebase.Auth
         // These 3 helper methods just add the api key and the X-Firebase-Locale header
 
         private Task<Response<T>> PostDataAsync<T>(string url, object data, CancellationToken cancellationToken)
-            => _client.PostWithResponseDataAsync<T>(url + "?key=" + Key, data, cancellationToken);
+            => _client.PostAsync<T>(url + "?key=" + Key, data, null, cancellationToken);
 
 
         private Task<Response<T>> PostDataAsync<T>(string url, string firebaseLocaleHeader, object data, CancellationToken cancellationToken)
         {
-            _client.DefaultRequestHeaders.Clear();
+            Dictionary<string, string> headers = new Dictionary<string, string>();
             if (!string.IsNullOrWhiteSpace(firebaseLocaleHeader))
-                _client.DefaultRequestHeaders.Add("X-Firebase-Locale", firebaseLocaleHeader);
-            return PostDataAsync<T>(url + "?key=" + Key, data, cancellationToken);
+                headers.Add("X-Firebase-Locale", firebaseLocaleHeader);
+            return _client.PostAsync<T>(url + "?key=" + Key, data, headers, cancellationToken);
         }
 
 
         private Task<Response> PostDataAsync(string url, object data, CancellationToken cancellationToken)
-            => _client.PostAsync(url + "?key=" + Key, data, cancellationToken);
+            => _client.PostAsync(url + "?key=" + Key, data, null, cancellationToken);
 
 
 
