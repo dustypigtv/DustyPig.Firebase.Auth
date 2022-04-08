@@ -127,14 +127,28 @@ namespace DustyPig.Firebase.Auth
         /// <param name="idToken">The OAuth credential (an ID token or access token).</param>
         /// <param name="providerId">The Provider Id which issues the credential.</param>
         /// <param name="returnIdpCredential">Whether to force the return of the OAuth credential on the following errors: FEDERATED_USER_ID_ALREADY_LINKED and EMAIL_EXISTS.</param>
-        public Task<Response<SignInWithOAuth>> SignInWithOAuthAsync(string requestUri, string idToken, string providerId, bool returnIdpCredential = false, CancellationToken cancellationToken = default) =>
-            PostDataAsync<SignInWithOAuth>(URL_SIGNIN_WITH_IDP, new SignInWithOAuthRequest
+        public Task<Response<SignInWithOAuth>> SignInWithOAuthAsync(string requestUri, string idToken, string providerId, bool returnIdpCredential = false, CancellationToken cancellationToken = default)
+        {
+            
+            var data = new SignInWithOAuthRequest
             {
-                PostBody = $"id_token={idToken}&providerId={providerId}",
                 RequestUri = requestUri,
                 ReturnIdpCredential = returnIdpCredential
-            }, cancellationToken);
+            };
 
+            switch (providerId)
+            {
+                case "apple.com":
+                    data.PostBody = $"id_token={idToken}&providerId={providerId}";
+                    break;
+
+                default:
+                    data.PostBody = $"access_token={idToken}&providerId={providerId}";
+                    break;
+            }
+
+            return PostDataAsync<SignInWithOAuth>(URL_SIGNIN_WITH_IDP, data, cancellationToken);
+        }
 
 
         /// <summary>
