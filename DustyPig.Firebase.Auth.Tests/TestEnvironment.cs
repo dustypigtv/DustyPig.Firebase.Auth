@@ -6,6 +6,8 @@ namespace DustyPig.Firebase.Auth.Tests
     {
         public static string GetFirebaseAPIKey() => GetVariable("FIREBASE_API_KEY");
 
+        public static string GetTestPassword() => GetVariable("TEST_PASSWORD");
+
         private static string GetVariable(string varName)
         {
             string ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.Process);

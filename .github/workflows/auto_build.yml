@@ -5,6 +5,7 @@ on:
 
 env:
     FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+    TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
 
 jobs:
   build:

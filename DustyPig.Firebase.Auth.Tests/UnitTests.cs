@@ -11,7 +11,7 @@ namespace DustyPig.Firebase.Auth.Tests
         {
             var client = new Client(TestEnvironment.GetFirebaseAPIKey());
 
-            var tokenResponse = await client.SignInWithEmailPasswordAsync("testuser@dustypig.tv", "test^Pass1");
+            var tokenResponse = await client.SignInWithEmailPasswordAsync("testuser@dustypig.tv", TestEnvironment.GetTestPassword());
             tokenResponse.ThrowIfError();
 
             var refreshResponse = await client.RefreshTokenAsync(tokenResponse.Data.RefreshToken);
