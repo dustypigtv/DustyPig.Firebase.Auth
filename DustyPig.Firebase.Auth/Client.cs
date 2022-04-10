@@ -139,6 +139,7 @@ namespace DustyPig.Firebase.Auth
             switch (providerId)
             {
                 case "apple.com":
+                case "google.com":
                     data.PostBody = $"id_token={idToken}&providerId={providerId}";
                     break;
 
