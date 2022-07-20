@@ -28,6 +28,18 @@ namespace DustyPig.Firebase.Auth
 
         private static readonly REST.Client _client = new REST.Client() { BaseAddress = new Uri(URL_BASE) };
 
+        public static bool IncludeRawContentInResponse
+        {
+            get => _client.IncludeRawContentInResponse;
+            set => _client.IncludeRawContentInResponse = value;
+        }
+
+        public static bool AutoThrowIfError
+        {
+            get => _client.AutoThrowIfError;
+            set => _client.AutoThrowIfError = value;
+        }
+
         public Client() { }
 
         public Client(string key) => Key = key;
