@@ -9,8 +9,6 @@ namespace DustyPig.Firebase.Auth.Tests
         [TestMethod]
         public async Task BasicAccountOps()
         {
-            Client.IncludeRawContentInResponse = true;
-         
             var client = new Client(TestEnvironment.GetFirebaseAPIKey());
 
             var tokenResponse = await client.SignInWithEmailPasswordAsync("testuser@dustypig.tv", "test password");

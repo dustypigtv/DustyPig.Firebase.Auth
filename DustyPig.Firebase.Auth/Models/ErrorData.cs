@@ -10,7 +10,5 @@ namespace DustyPig.Firebase.Auth.Models
         public int Code { get; set; }
 
         public string Message { get; set; }
-
-        public Exception Exception { get; set; }
     }
 }

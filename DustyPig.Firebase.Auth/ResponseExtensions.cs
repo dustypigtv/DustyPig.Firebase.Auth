@@ -13,5 +13,21 @@ namespace DustyPig.Firebase.Auth
                 catch { }
             return null;
         }
+
+        public static void ThrowIfFirebaseError(this Response response)
+        {
+            if (response != null && !response.Success)
+            {
+                ErrorData errorData = null;
+                try { errorData = JsonConvert.DeserializeObject<ErrorDataWrapper>(response.RawContent).Data; }
+                catch { }
+
+                if (errorData == null)
+                    response.ThrowIfError();
+
+                throw new System.Exception(errorData.Message);
+
+            }
+        }
     }
 }
