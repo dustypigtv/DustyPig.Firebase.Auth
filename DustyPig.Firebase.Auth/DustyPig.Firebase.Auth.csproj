@@ -15,11 +15,11 @@
 	  <NoWarn>$(NoWarn);1591,1573</NoWarn>
 
 	  <!-- Leave the revision as zero, it will be set by github actions -->
-	  <Version>3.0.1.0</Version>
+	  <Version>3.1.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DustyPig.REST" Version="3.1.0.15" />
+    <PackageReference Include="DustyPig.REST" Version="3.2.0.16" />
   </ItemGroup>
 
  
