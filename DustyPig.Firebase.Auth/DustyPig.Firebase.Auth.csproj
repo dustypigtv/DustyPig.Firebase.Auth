@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;net7.0;net8.0</TargetFrameworks>
-    <LangVersion>8</LangVersion>
+    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+    <LangVersion>12</LangVersion>
     <Authors>DustyPig.tv</Authors>
     <Company>DustyPig.tv</Company>
     <Description>Firebase.Auth REST API</Description>
