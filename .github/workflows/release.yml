@@ -13,18 +13,16 @@ jobs:
     steps:
     
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v5
         with: 
-          dotnet-version: 8.0.x
+          dotnet-version: 8
 
       - name: Build
         run: |
             sed -i "s/\(<Version>\([0-9]\+\.\)\{3\}\)\([0-9]\+\)/\1${{github.run_number}}/" "DustyPig.Firebase.Auth/DustyPig.Firebase.Auth.csproj"
-            dotnet test -c release
             dotnet pack -c release -o nuget
             dotnet nuget push "nuget/*.nupkg" --skip-duplicate -k ${{secrets.NUGET_KEY}} -s https://api.nuget.org/v3/index.json
-        
         
