@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace DustyPig.Firebase.Auth.Models
 {
     class ErrorDataWrapper
     {
-        [JsonProperty("error")]
+        [JsonPropertyName("error")]
         public ErrorData Data { get; set; }
     }
 }

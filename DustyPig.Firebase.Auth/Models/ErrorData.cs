@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DustyPig.Firebase.Auth.Models
 {
     public class ErrorData
     {
-        public List<Error> Errors { get; set; } = new List<Error>();
+        public List<Error> Errors { get; set; } = [];
 
         public int Code { get; set; }
 

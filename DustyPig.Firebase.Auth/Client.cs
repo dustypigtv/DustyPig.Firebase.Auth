@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DustyPig.Firebase.Auth
 {
-    public class Client
+    public class Client : IDisposable
     {
         private const string URL_BASE = "https://identitytoolkit.googleapis.com";
 
@@ -26,9 +26,9 @@ namespace DustyPig.Firebase.Auth
         private const string URL_LOOKUP = "/v1/accounts:lookup";
         private const string URL_DELETE = "/v1/accounts:delete";
 
-        private static readonly REST.Client _client = new REST.Client() { BaseAddress = new Uri(URL_BASE) };
+        private readonly REST.Client _client = new() { BaseAddress = new Uri(URL_BASE) };
 
-        public Client() 
+        public Client()
         {
             _client.IncludeRawContentInResponse = true;
         }
@@ -38,12 +38,23 @@ namespace DustyPig.Firebase.Auth
             Key = key;
             _client.IncludeRawContentInResponse = true;
         }
-        
+
+        public void Dispose()
+        {
+            _client.Dispose();
+            GC.SuppressFinalize(this);
+        }
+
+
 
 
         public string Key { get; set; }
 
-
+        public bool AutoThrowIfError
+        {
+            get => _client.AutoThrowIfError;
+            set => _client.AutoThrowIfError = value;
+        }
 
 
 
@@ -135,7 +146,7 @@ namespace DustyPig.Firebase.Auth
         /// <param name="returnIdpCredential">Whether to force the return of the OAuth credential on the following errors: FEDERATED_USER_ID_ALREADY_LINKED and EMAIL_EXISTS.</param>
         public Task<Response<SignInWithOAuth>> SignInWithOAuthAsync(string requestUri, string idToken, string providerId, bool returnIdpCredential = false, CancellationToken cancellationToken = default)
         {
-            
+
             var data = new SignInWithOAuthRequest
             {
                 RequestUri = requestUri,
@@ -329,7 +340,7 @@ namespace DustyPig.Firebase.Auth
             PostDataAsync<UnlinkProvider>(URL_UPDATE, new UnlinkProviderRequest
             {
                 IdToken = idToken,
-                DeleteProvider = new List<string>(deleteProviders)
+                DeleteProviders = new List<string>(deleteProviders)
             }, cancellationToken);
 
 

@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace DustyPig.Firebase.Auth.Models
 {
@@ -7,13 +7,13 @@ namespace DustyPig.Firebase.Auth.Models
         /// <summary>
         /// The number of seconds in which the ID token expires.
         /// </summary>
-        [JsonProperty("expires_in")]
+        [JsonPropertyName("expires_in")]
         public string ExpiresIn { get; set; }
 
         /// <summary>
         /// The type of the refresh token, always "Bearer".
         /// </summary>
-        [JsonProperty("token_type")]
+        [JsonPropertyName("token_type")]
         public string TokenType { get; set; }
 
         /// <summary>
@@ -24,19 +24,19 @@ namespace DustyPig.Firebase.Auth.Models
         /// <summary>
         /// A Firebase Auth ID token.
         /// </summary>
-        [JsonProperty("id_token")]
+        [JsonPropertyName("id_token")]
         public string IdToken { get; set; }
 
         /// <summary>
         /// The uid corresponding to the provided ID token.
         /// </summary>
-        [JsonProperty("user_id")]
+        [JsonPropertyName("user_id")]
         public string UserId { get; set; }
 
         /// <summary>
         /// Your Firebase project ID.
         /// </summary>
-        [JsonProperty("project_id")]
+        [JsonPropertyName("project_id")]
         public string ProjectId { get; set; }
     }
 }

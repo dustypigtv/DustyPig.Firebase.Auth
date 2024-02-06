@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace DustyPig.Firebase.Auth.Models
 {
     class OOBRequest
     {
-        [JsonProperty("oobCode")]
+        [JsonPropertyName("oobCode")]
         public string OOBCode { get; set; }
     }
 }

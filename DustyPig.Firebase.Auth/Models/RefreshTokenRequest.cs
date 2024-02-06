@@ -1,13 +1,13 @@
-﻿using Newtonsoft.Json;
+﻿using System.Text.Json.Serialization;
 
 namespace DustyPig.Firebase.Auth.Models
 {
     class RefreshTokenRequest
     {
-        [JsonProperty("grant_type")]
+        [JsonPropertyName("grant_type")]
         public string GrantType => "refresh_token";
 
-        [JsonProperty("refresh_token")]
+        [JsonPropertyName("refresh_token")]
         public string RefreshToken { get; set; }
     }
 }

@@ -1,15 +1,17 @@
 ﻿using DustyPig.Firebase.Auth.Models;
 using DustyPig.REST;
-using Newtonsoft.Json;
+using System.Text.Json;
 
 namespace DustyPig.Firebase.Auth
 {
     public static class ResponseExtensions
     {
+        private static readonly JsonSerializerOptions _jsonSerializerOptions = new(JsonSerializerDefaults.Web);
+
         public static ErrorData FirebaseError(this Response response)
         {
             if (response != null && !response.Success)
-                try { return JsonConvert.DeserializeObject<ErrorDataWrapper>(response.RawContent).Data; }
+                try { return JsonSerializer.Deserialize<ErrorDataWrapper>(response.RawContent, _jsonSerializerOptions).Data; }
                 catch { }
             return null;
         }
@@ -19,7 +21,7 @@ namespace DustyPig.Firebase.Auth
             if (response != null && !response.Success)
             {
                 ErrorData errorData = null;
-                try { errorData = JsonConvert.DeserializeObject<ErrorDataWrapper>(response.RawContent).Data; }
+                try { errorData = JsonSerializer.Deserialize<ErrorDataWrapper>(response.RawContent, _jsonSerializerOptions).Data; }
                 catch { }
 
                 if (errorData == null)
