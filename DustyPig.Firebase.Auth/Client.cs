@@ -26,7 +26,7 @@ namespace DustyPig.Firebase.Auth
         private const string URL_LOOKUP = "/v1/accounts:lookup";
         private const string URL_DELETE = "/v1/accounts:delete";
 
-        private readonly REST.Client _client = new() { BaseAddress = new Uri(URL_BASE) };
+        private readonly REST.Client _client = new(new Uri(URL_BASE));
 
         public Client()
         {
