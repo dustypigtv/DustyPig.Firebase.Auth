@@ -1,26 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
-    <LangVersion>12</LangVersion>
-    <Authors>DustyPig.tv</Authors>
-    <Company>DustyPig.tv</Company>
-    <Description>Firebase.Auth REST API</Description>
-    <Copyright>DustyPig.tv</Copyright>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/dustypigtv/DustyPig.Firebase.Auth</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/dustypigtv/DustyPig.Firebase.Auth.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  <NoWarn>$(NoWarn);1591,1573</NoWarn>
+	<PropertyGroup>
+		<TargetFrameworks>net6.0;net7.0;net8.0</TargetFrameworks>
+		<LangVersion>12</LangVersion>
+		<NoWarn>$(NoWarn);1591,1573</NoWarn>
 
-	  <!-- Leave the revision as zero, it will be set by github actions -->
-	  <Version>3.1.1.0</Version>
-  </PropertyGroup>
+		<!-- Leave the revision as zero, it will be set by github actions -->
+		<Version>3.1.1.0</Version>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DustyPig.REST" Version="3.4.0.28" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<Authors>DustyPig.tv</Authors>
+		<Company>DustyPig.tv</Company>
+		<Description>Firebase.Auth API Client</Description>
+		<Copyright>DustyPig.tv</Copyright>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/dustypigtv/DustyPig.Firebase.Auth</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/dustypigtv/DustyPig.Firebase.Auth.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\.editorconfig" Link=".editorconfig" />
+		<None Include="README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DustyPig.REST" Version="3.4.0.28" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+	</ItemGroup>
 
  
 </Project>
