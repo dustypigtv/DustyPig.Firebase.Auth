@@ -27,7 +27,7 @@ namespace DustyPig.Firebase.Auth.Models
         /// <summary>
         /// List of all linked provider objects which contain "providerId" and "federatedId".
         /// </summary>        
-        public List<ProviderUserInfo> ProviderUserInfo { get; set; } = new List<ProviderUserInfo>();
+        public List<ProviderUserInfo> ProviderUserInfo { get; set; } = [];
 
         /// <summary>
         /// Whether or not the account's email has been verified.

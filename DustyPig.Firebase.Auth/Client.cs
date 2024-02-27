@@ -26,18 +26,13 @@ namespace DustyPig.Firebase.Auth
         private const string URL_LOOKUP = "/v1/accounts:lookup";
         private const string URL_DELETE = "/v1/accounts:delete";
 
-        private readonly REST.Client _client = new(new Uri(URL_BASE));
+        private readonly REST.Client _client = new(URL_BASE);
 
-        public Client()
-        {
-            _client.IncludeRawContentInResponse = true;
-        }
 
-        public Client(string key)
-        {
-            Key = key;
-            _client.IncludeRawContentInResponse = true;
-        }
+
+        public Client() => _client.IncludeRawContentInResponse = true;
+
+        public Client(string key) : base() => Key = key;
 
         public void Dispose()
         {
@@ -66,7 +61,7 @@ namespace DustyPig.Firebase.Auth
 
         private Task<Response<T>> PostDataAsync<T>(string url, string firebaseLocaleHeader, object data, CancellationToken cancellationToken)
         {
-            Dictionary<string, string> headers = new Dictionary<string, string>();
+            Dictionary<string, string> headers = [];
             if (!string.IsNullOrWhiteSpace(firebaseLocaleHeader))
                 headers.Add("X-Firebase-Locale", firebaseLocaleHeader);
             return _client.PostAsync<T>(url + "?key=" + Key, data, headers, cancellationToken);
@@ -150,21 +145,13 @@ namespace DustyPig.Firebase.Auth
             var data = new SignInWithOAuthRequest
             {
                 RequestUri = requestUri,
-                ReturnIdpCredential = returnIdpCredential
+                ReturnIdpCredential = returnIdpCredential,
+                PostBody = providerId switch
+                {
+                    "apple.com" or "google.com" => $"id_token={idToken}&providerId={providerId}",
+                    _ => $"access_token={idToken}&providerId={providerId}",
+                }
             };
-
-            switch (providerId)
-            {
-                case "apple.com":
-                case "google.com":
-                    data.PostBody = $"id_token={idToken}&providerId={providerId}";
-                    break;
-
-                default:
-                    data.PostBody = $"access_token={idToken}&providerId={providerId}";
-                    break;
-            }
-
             return PostDataAsync<SignInWithOAuth>(URL_SIGNIN_WITH_IDP, data, cancellationToken);
         }
 
@@ -244,7 +231,7 @@ namespace DustyPig.Firebase.Auth
             {
                 IdToken = idToken,
                 Password = password,
-                returnSecureToken = returnSecureToken
+                ReturnSecureToken = returnSecureToken
             }, cancellationToken);
 
 
@@ -269,14 +256,13 @@ namespace DustyPig.Firebase.Auth
             if (string.IsNullOrWhiteSpace(displayName))
             {
                 request.DisplayName = null;
-                request.DeleteAttributes = new List<string> { "DISPLAY_NAME" };
+                request.DeleteAttributes = ["DISPLAY_NAME"];
             }
 
             if (string.IsNullOrWhiteSpace(photoUrl))
             {
                 request.PhotoUrl = null;
-                if (request.DeleteAttributes == null)
-                    request.DeleteAttributes = new List<string>();
+                request.DeleteAttributes ??= [];
                 request.DeleteAttributes.Add("PHOTO_URL");
             }
 

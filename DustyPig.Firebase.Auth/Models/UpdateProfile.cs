@@ -32,7 +32,7 @@ namespace DustyPig.Firebase.Auth.Models
         /// <summary>
         /// List of all linked provider objects which contain "providerId" and "federatedId".
         /// </summary>        
-        public List<ProviderUserInfo> ProviderUserInfo { get; set; } = new List<ProviderUserInfo>();
+        public List<ProviderUserInfo> ProviderUserInfo { get; set; } = [];
 
         /// <summary>
         /// New Firebase Auth ID token for user.

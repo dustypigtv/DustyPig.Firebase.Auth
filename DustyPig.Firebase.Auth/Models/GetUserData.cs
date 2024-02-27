@@ -7,6 +7,6 @@ namespace DustyPig.Firebase.Auth.Models
         /// <summary>
         /// The account associated with the given Firebase ID token.
         /// </summary>
-        public List<User> Users { get; set; } = new List<User>();
+        public List<User> Users { get; set; } = [];
     }
 }

@@ -6,7 +6,7 @@
 
         public string Password { get; set; }
 
-        public bool returnSecureToken { get; set; }
+        public bool ReturnSecureToken { get; set; }
 
     }
 }
