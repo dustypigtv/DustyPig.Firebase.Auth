@@ -1,10 +1,9 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace DustyPig.Firebase.Auth.Models
+namespace DustyPig.Firebase.Auth.Models;
+
+class ErrorDataWrapper
 {
-    class ErrorDataWrapper
-    {
-        [JsonPropertyName("error")]
-        public ErrorData Data { get; set; }
-    }
+    [JsonPropertyName("error")]
+    public ErrorData Data { get; set; }
 }

@@ -1,12 +1,11 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+class ChangePasswordRequest
 {
-    class ChangePasswordRequest
-    {
-        public string IdToken { get; set; }
+    public string IdToken { get; set; }
 
-        public string Password { get; set; }
+    public string Password { get; set; }
 
-        public bool ReturnSecureToken { get; set; }
+    public bool ReturnSecureToken { get; set; }
 
-    }
 }

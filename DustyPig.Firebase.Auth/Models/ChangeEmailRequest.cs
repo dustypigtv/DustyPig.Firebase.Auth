@@ -1,11 +1,10 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+class ChangeEmailRequest
 {
-    class ChangeEmailRequest
-    {
-        public string IdToken { get; set; }
+    public string IdToken { get; set; }
 
-        public string Email { get; set; }
+    public string Email { get; set; }
 
-        public bool ReturnSecureToken { get; set; }
-    }
+    public bool ReturnSecureToken { get; set; }
 }

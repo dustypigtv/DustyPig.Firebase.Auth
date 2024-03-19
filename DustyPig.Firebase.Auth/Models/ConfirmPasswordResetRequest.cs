@@ -1,12 +1,11 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace DustyPig.Firebase.Auth.Models
-{
-    class ConfirmPasswordResetRequest
-    {
-        [JsonPropertyName("oobCode")]
-        public string OOBCode { get; set; }
+namespace DustyPig.Firebase.Auth.Models;
 
-        public string NewPassword { get; set; }
-    }
+class ConfirmPasswordResetRequest
+{
+    [JsonPropertyName("oobCode")]
+    public string OOBCode { get; set; }
+
+    public string NewPassword { get; set; }
 }

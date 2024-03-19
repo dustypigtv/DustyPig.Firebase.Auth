@@ -1,9 +1,8 @@
-﻿namespace DustyPig.Firebase.Auth.Models
-{
-    class SignInWithCustomTokenRequest
-    {
-        public string Token { get; set; }
+﻿namespace DustyPig.Firebase.Auth.Models;
 
-        public bool ReturnSecureToken => true;
-    }
+class SignInWithCustomTokenRequest
+{
+    public string Token { get; set; }
+
+    public bool ReturnSecureToken => true;
 }

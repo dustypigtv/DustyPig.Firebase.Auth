@@ -1,13 +1,12 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+class LinkWithEmailPasswordRequest
 {
-    class LinkWithEmailPasswordRequest
-    {
-        public string IdToken { get; set; }
+    public string IdToken { get; set; }
 
-        public string Email { get; set; }
+    public string Email { get; set; }
 
-        public string Password { get; set; }
+    public string Password { get; set; }
 
-        public bool ReturnSecureToken => true;
-    }
+    public bool ReturnSecureToken => true;
 }

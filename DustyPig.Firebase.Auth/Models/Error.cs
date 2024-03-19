@@ -1,11 +1,10 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+public class Error
 {
-    public class Error
-    {
-        public string Domain { get; set; }
+    public string Domain { get; set; }
 
-        public string Reason { get; set; }
+    public string Reason { get; set; }
 
-        public string Message { get; set; }
-    }
+    public string Message { get; set; }
 }

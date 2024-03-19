@@ -1,10 +1,9 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+public class SendEmail
 {
-    public class SendEmail
-    {
-        /// <summary>
-        /// The email of the account.
-        /// </summary>
-        public string Email { get; set; }
-    }
+    /// <summary>
+    /// The email of the account.
+    /// </summary>
+    public string Email { get; set; }
 }

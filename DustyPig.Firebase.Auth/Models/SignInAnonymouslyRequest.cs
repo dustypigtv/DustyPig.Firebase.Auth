@@ -1,7 +1,6 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+class SignInAnonymouslyRequest
 {
-    class SignInAnonymouslyRequest
-    {
-        public bool ReturnSecureToken => true;
-    }
+    public bool ReturnSecureToken => true;
 }

@@ -1,7 +1,6 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+class IdTokenRequest
 {
-    class IdTokenRequest
-    {
-        public string IdToken { get; set; }
-    }
+    public string IdToken { get; set; }
 }

@@ -1,22 +1,21 @@
 ﻿using System;
 
-namespace DustyPig.Firebase.Auth.Tests
+namespace DustyPig.Firebase.Auth.Tests;
+
+static class TestEnvironment
 {
-    static class TestEnvironment
+    public static string GetFirebaseAPIKey() => GetVariable("FIREBASE_API_KEY");
+
+    private static string GetVariable(string varName)
     {
-        public static string GetFirebaseAPIKey() => GetVariable("FIREBASE_API_KEY");
+        string ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.Process);
 
-        private static string GetVariable(string varName)
-        {
-            string ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.Process);
+        if (string.IsNullOrWhiteSpace(ret))
+            ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.User);
 
-            if (string.IsNullOrWhiteSpace(ret))
-                ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.User);
+        if (string.IsNullOrWhiteSpace(ret))
+            ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.Machine);
 
-            if (string.IsNullOrWhiteSpace(ret))
-                ret = Environment.GetEnvironmentVariable(varName, EnvironmentVariableTarget.Machine);
-
-            return ret;
-        }
+        return ret;
     }
 }

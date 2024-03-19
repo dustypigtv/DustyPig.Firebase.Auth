@@ -1,7 +1,6 @@
-﻿namespace DustyPig.Firebase.Auth.Models
+﻿namespace DustyPig.Firebase.Auth.Models;
+
+class ErrorResponse
 {
-    class ErrorResponse
-    {
-        public ErrorData Error { get; set; }
-    }
+    public ErrorData Error { get; set; }
 }

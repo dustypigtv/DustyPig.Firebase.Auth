@@ -1,9 +1,8 @@
-﻿namespace DustyPig.Firebase.Auth.Models
-{
-    class FetchProvidersForEmailRequest
-    {
-        public string Identifier { get; set; }
+﻿namespace DustyPig.Firebase.Auth.Models;
 
-        public string ContinueUri { get; set; }
-    }
+class FetchProvidersForEmailRequest
+{
+    public string Identifier { get; set; }
+
+    public string ContinueUri { get; set; }
 }

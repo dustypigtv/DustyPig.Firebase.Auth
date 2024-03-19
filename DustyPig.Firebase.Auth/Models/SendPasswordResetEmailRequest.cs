@@ -1,9 +1,8 @@
-﻿namespace DustyPig.Firebase.Auth.Models
-{
-    class SendPasswordResetEmailRequest
-    {
-        public string RequestType => "PASSWORD_RESET";
+﻿namespace DustyPig.Firebase.Auth.Models;
 
-        public string Email { get; set; }
-    }
+class SendPasswordResetEmailRequest
+{
+    public string RequestType => "PASSWORD_RESET";
+
+    public string Email { get; set; }
 }
