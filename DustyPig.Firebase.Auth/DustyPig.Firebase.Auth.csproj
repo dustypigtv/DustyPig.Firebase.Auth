@@ -34,7 +34,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DustyPig.REST" Version="3.4.0.29" />
+		<PackageReference Include="DustyPig.REST" Version="3.4.0.30" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
 	</ItemGroup>
 

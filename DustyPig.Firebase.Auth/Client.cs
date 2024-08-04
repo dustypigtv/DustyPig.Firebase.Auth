@@ -5,6 +5,7 @@ using DustyPig.Firebase.Auth.Models;
 using DustyPig.REST;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,18 +27,58 @@ public class Client : IDisposable
     private const string URL_LOOKUP = "/v1/accounts:lookup";
     private const string URL_DELETE = "/v1/accounts:delete";
 
-    private readonly REST.Client _client = new(URL_BASE) { IncludeRawContentInResponse = true };
+    private readonly REST.Client _client;
+    private readonly bool _disposeOfHttpclient = false;
 
 
+    /// <summary>
+    /// Creates a configuration that uses its own internal <see cref="HttpClient"/>. When using this constructor, <see cref="Dispose"/> should be called.
+    /// </summary>
+    public Client()
+    {
+        _client = new() { BaseAddress = new Uri(URL_BASE) };
+        _disposeOfHttpclient = true;
+    }
 
-    public Client() { }
+    /// <summary>
+    /// Creates a configuration that uses its own internal <see cref="HttpClient"/>. When using this constructor, <see cref="Dispose"/> should be called.
+    /// </summary>
+    public Client(string key) : this() => Key = key;
 
-    public Client(string key) => Key = key;
+
+    /// <summary
+    /// Creates a configurtion that uses a shared <see cref="HttpClient"/>
+    /// </summary
+    /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
+    public Client(HttpClient httpClient)
+    {
+        if(httpClient == null)
+            throw new ArgumentNullException(nameof(httpClient));
+        _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
+    }
+
+
+    /// <summary
+    /// Creates a configurtion that uses a shared <see cref="HttpClient"/>
+    /// </summary
+    /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
+    public Client(HttpClient httpClient, string key)
+    {
+        if (httpClient == null)
+            throw new ArgumentNullException(nameof(httpClient));
+        _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
+        Key = key;
+    }
+
+
 
     public void Dispose()
     {
-        _client.Dispose();
-        GC.SuppressFinalize(this);
+        if (_disposeOfHttpclient)
+        {
+            _client.Dispose();
+            GC.SuppressFinalize(this);
+        }
     }
 
 
