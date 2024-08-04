@@ -28,7 +28,6 @@ public class Client : IDisposable
     private const string URL_DELETE = "/v1/accounts:delete";
 
     private readonly REST.Client _client;
-    private readonly bool _disposeOfHttpclient = false;
 
 
     /// <summary>
@@ -37,7 +36,6 @@ public class Client : IDisposable
     public Client()
     {
         _client = new() { BaseAddress = new Uri(URL_BASE) };
-        _disposeOfHttpclient = true;
     }
 
     /// <summary>
@@ -50,12 +48,7 @@ public class Client : IDisposable
     /// Creates a configurtion that uses a shared <see cref="HttpClient"/>
     /// </summary
     /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
-    public Client(HttpClient httpClient)
-    {
-        if(httpClient == null)
-            throw new ArgumentNullException(nameof(httpClient));
-        _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
-    }
+    public Client(HttpClient httpClient) => _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
 
 
     /// <summary
@@ -64,8 +57,6 @@ public class Client : IDisposable
     /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
     public Client(HttpClient httpClient, string key)
     {
-        if (httpClient == null)
-            throw new ArgumentNullException(nameof(httpClient));
         _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
         Key = key;
     }
@@ -74,11 +65,8 @@ public class Client : IDisposable
 
     public void Dispose()
     {
-        if (_disposeOfHttpclient)
-        {
-            _client.Dispose();
-            GC.SuppressFinalize(this);
-        }
+        _client.Dispose();
+        GC.SuppressFinalize(this);
     }
 
 
