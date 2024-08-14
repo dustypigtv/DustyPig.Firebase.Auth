@@ -35,7 +35,11 @@ public class Client : IDisposable
     /// </summary>
     public Client()
     {
-        _client = new() { BaseAddress = new Uri(URL_BASE) };
+        _client = new() 
+        {
+            BaseAddress = new Uri(URL_BASE),
+            IncludeRawContentInResponse = true
+        };
     }
 
     /// <summary>
@@ -48,7 +52,11 @@ public class Client : IDisposable
     /// Creates a configurtion that uses a shared <see cref="HttpClient"/>
     /// </summary
     /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
-    public Client(HttpClient httpClient) => _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
+    public Client(HttpClient httpClient) => _client = new(httpClient)
+    {
+        BaseAddress = new Uri(URL_BASE),
+        IncludeRawContentInResponse = true
+    };
 
 
     /// <summary
@@ -57,7 +65,11 @@ public class Client : IDisposable
     /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
     public Client(HttpClient httpClient, string key)
     {
-        _client = new(httpClient) { BaseAddress = new Uri(URL_BASE) };
+        _client = new(httpClient) 
+        {
+            BaseAddress = new Uri(URL_BASE),
+            IncludeRawContentInResponse = true
+        };
         Key = key;
     }
 
