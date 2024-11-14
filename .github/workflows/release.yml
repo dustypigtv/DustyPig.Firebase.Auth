@@ -1,7 +1,6 @@
 name: Release
 on:
-  workflow_dispatch:
-    branches: [ master ]
+  workflow_dispatch
 
 env:
     FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
@@ -18,7 +17,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v3
         with: 
-          dotnet-version: 8
+          dotnet-version: 9
 
       - name: Build
         run: |
