@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DustyPig.Firebase.Auth;
 
-public class Client : IDisposable
+public class Client
 {
     private const string URL_BASE = "https://identitytoolkit.googleapis.com";
 
@@ -35,7 +35,7 @@ public class Client : IDisposable
     /// </summary>
     public Client()
     {
-        _client = new() 
+        _client = new(new()) 
         {
             BaseAddress = new Uri(URL_BASE),
             IncludeRawContentInResponse = true
@@ -47,43 +47,7 @@ public class Client : IDisposable
     /// </summary>
     public Client(string key) : this() => Key = key;
 
-
-    /// <summary
-    /// Creates a configurtion that uses a shared <see cref="HttpClient"/>
-    /// </summary
-    /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
-    public Client(HttpClient httpClient) => _client = new(httpClient)
-    {
-        BaseAddress = new Uri(URL_BASE),
-        IncludeRawContentInResponse = true
-    };
-
-
-    /// <summary
-    /// Creates a configurtion that uses a shared <see cref="HttpClient"/>
-    /// </summary
-    /// <param name="httpClient">The shared <see cref="HttpClient"/> this REST configuration should use</param>
-    public Client(HttpClient httpClient, string key)
-    {
-        _client = new(httpClient) 
-        {
-            BaseAddress = new Uri(URL_BASE),
-            IncludeRawContentInResponse = true
-        };
-        Key = key;
-    }
-
-
-
-    public void Dispose()
-    {
-        _client.Dispose();
-        GC.SuppressFinalize(this);
-    }
-
-
-
-
+    
     public string Key { get; set; }
 
     public bool AutoThrowIfError
