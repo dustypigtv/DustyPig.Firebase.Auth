@@ -30,9 +30,6 @@ public class Client
     private readonly REST.Client _client;
 
 
-    /// <summary>
-    /// Creates a configuration that uses its own internal <see cref="HttpClient"/>. When using this constructor, <see cref="Dispose"/> should be called.
-    /// </summary>
     public Client()
     {
         _client = new(new()) 
@@ -42,9 +39,6 @@ public class Client
         };
     }
 
-    /// <summary>
-    /// Creates a configuration that uses its own internal <see cref="HttpClient"/>. When using this constructor, <see cref="Dispose"/> should be called.
-    /// </summary>
     public Client(string key) : this() => Key = key;
 
     
