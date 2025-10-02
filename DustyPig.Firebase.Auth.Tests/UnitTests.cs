@@ -9,7 +9,7 @@ public class UnitTests
     [TestMethod]
     public async Task BasicAccountOps()
     {
-        var client = new Client(TestEnvironment.GetFirebaseAPIKey());
+        var client = new Client(null, TestEnvironment.GetFirebaseAPIKey());
 
 
         var tokenResponse = await client.SignInWithEmailPasswordAsync("testuser@dustypig.tv", "test password");

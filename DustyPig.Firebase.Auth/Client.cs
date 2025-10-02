@@ -3,6 +3,7 @@
 */
 using DustyPig.Firebase.Auth.Models;
 using DustyPig.REST;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -27,19 +28,33 @@ public class Client
     private const string URL_LOOKUP = "/v1/accounts:lookup";
     private const string URL_DELETE = "/v1/accounts:delete";
 
+    private static readonly HttpClient _internalHttpClient = new();
     private readonly REST.Client _client;
 
 
-    public Client()
+    public Client() : this(null, null, null) { }
+
+    public Client(HttpClient httpClient) : this(httpClient, null, null) { }
+
+    public Client(string key) : this(null, key, null) { }
+
+    public Client(ILogger<Client> logger) : this(null, null, logger) { }
+
+    public Client(HttpClient httpClient, string key) : this(httpClient, key, null) { }
+
+    public Client(HttpClient httpClient, ILogger<Client> logger) : this(httpClient, null, logger) { }
+
+    public Client(string key, ILogger<Client> logger) : this(null, key, logger) { }
+
+    public Client(HttpClient httpClient, string key, ILogger<Client> logger)
     {
-        _client = new(new()) 
+        Key = key;
+        _client = new(httpClient ?? _internalHttpClient) 
         {
             BaseAddress = new Uri(URL_BASE),
             IncludeRawContentInResponse = true
         };
     }
-
-    public Client(string key) : this() => Key = key;
 
     
     public string Key { get; set; }
